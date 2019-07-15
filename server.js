@@ -12,6 +12,7 @@ const getPlayerInfo = require("./model/GetPlayerInfo").getPlayerInfo;
 const GetOffers = require("./model/GetOffers").GetOffers;
 const RedeemComp = require("./model/RedeemComp").RedeemComp;
 const RedeemPoints = require("./model/RedeemPoints").RedeemPoints;
+const RedeemOffer = require("./model/RedeemOffer").RedeemOffer;
 //---------------------------------------------------------------------------------------//
 
 //------------------------------------express setup--------------------------------------//
@@ -50,6 +51,11 @@ app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname + "/views/index.html"))
 );
 
+app.get('/editUser', (req, res) => {
+  res.sendFile(path.join(__dirname + '/views/editUser.html'))
+})
+
+
 //validate user api Post
 //IG will send post request and get account back - also will display account information
 app.post("/Players/GetPlayerInfo", (req, res) => {
@@ -86,6 +92,20 @@ app.post("/Players/GetOffers", (req, res) => {
     account
   ); //should display player info anyways
 });
+
+
+// redeeming an offer that is requested for redemption
+app.post("/Players/RedeemOffer", (req, res) => {
+  // let offer = GetOffers(req.body.AccountNumber);
+  // let account = getPlayerInfo(req.body.AccountNumber);
+  let offersAvailable = req.body.RedeemOfferList;
+  console.log(offersAvailable);
+  let offersRedeemed = RedeemOffer(offersAvailable, req.body.AccountNumber);
+
+  res.send(offersRedeemed);
+})
+
+
 
 //redeem each comp in list, i am assuming that there could be more than one
 app.post("/Players/RedeemComp", (req, res) => {
