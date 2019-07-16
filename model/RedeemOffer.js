@@ -13,7 +13,7 @@ module.exports = {
         //var playerData = db.get('players').value()
         //console.log(offerData)
         let redeemOfferResultList = []
-        let transactionIDCount = db.get('transactionId').value()
+        let transactionIdCount = db.get('transactionId').value()
 
         
         var j = 0
@@ -21,25 +21,36 @@ module.exports = {
             if(offerData[i].AccountNumber === String(accountnumber)){
                 if(offerData[i].OfferCode === offersAvailable[j].OfferCode){
                     redeemOfferResultList.push(offersAvailable[j])
+                    delete offerData[i];
+                    db.set('offers', offerData).write()
                     j++
                     if(offersAvailable.length === j)
                         break
                 }
-                    
             }
         }
 
+        var responseStatus = {"IsSuccess": true, "ErrorMessage": "", "ErrorCode": ""}
+
+        for(let i = 0; i < redeemOfferResultList.length; i++){
+            transactionIdCount++;
+            db.set('transactionId', transactionIdCount).write()
+            redeemOfferResultList[i].TransactionId = transactionIdCount
+            redeemOfferResultList[i].ResponseStatus = responseStatus
+        }
 
         let out = {
             "AccountNumber": accountnumber,
             RedeemOfferResultList: redeemOfferResultList,
-            "ResponseStatus": {
-                "IsSuccess": true,
-                "ErrorMessage": "",
-                "ErrorCode": ""
-              },
+            "ResponseStatus": responseStatus,
               "CustomFields": {}
         }
+
+
+
+
+
+
         return out;
 
     }
