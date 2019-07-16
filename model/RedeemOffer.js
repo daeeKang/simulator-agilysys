@@ -10,12 +10,9 @@ module.exports = {
             console.log('I am broke')
 
         var offerData = db.get('offers').value()
-        //var playerData = db.get('players').value()
-        //console.log(offerData)
         let redeemOfferResultList = []
         let transactionIdCount = db.get('transactionId').value()
 
-        
         var j = 0
         for(let i = 0; i < offerData.length; i++){
             if(offerData[i].AccountNumber === String(accountnumber)){
@@ -45,11 +42,6 @@ module.exports = {
             "ResponseStatus": responseStatus,
               "CustomFields": {}
         }
-
-
-
-
-
 
         return out;
 
