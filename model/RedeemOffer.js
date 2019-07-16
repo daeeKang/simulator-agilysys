@@ -10,6 +10,7 @@ module.exports = {
             console.log('I am broke')
 
         var offerData = db.get('offers').value()
+        console.log(offerData)
         let redeemOfferResultList = []
         let transactionIdCount = db.get('transactionId').value()
 
@@ -18,7 +19,8 @@ module.exports = {
             if(offerData[i].AccountNumber === String(accountnumber)){
                 if(offerData[i].OfferCode === offersAvailable[j].OfferCode){
                     redeemOfferResultList.push(offersAvailable[j])
-                    delete offerData[i];
+                    var removed = offerData.splice(i,1)
+                    console.log(removed)
                     db.set('offers', offerData).write()
                     j++
                     if(offersAvailable.length === j)
