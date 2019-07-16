@@ -2,7 +2,7 @@
 body{
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    background-color: #F5F5F5;
+    background-color: #ffffff;
 }
 
 /*I DONT KNOW WHERE THE HELL THIS ORANGE BOX IS COMING FROM*/
@@ -25,26 +25,55 @@ h2{
 
 input[type=text] {
     border-radius: 16px;
+    background-color: white;
     text-align: center;
+    width: 80px;
     font-weight: bold;
     margin-bottom: 10px;
     border: none;
+    color:black;
+    white-space: nowrap; 
+    height:30px;
 }
 input[type=text]::-webkit-input-placeholder {
-    font-weight: normal
+    font-weight: normal;
 }
 
+.input1[type=text] {
+  background-color: transparent;
+  text-align: center;
+  width: 80%;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  white-space: nowrap; 
+}
 
 #player-data{
     text-align: left
 }
 
 #app-not-ready{
-    color: red;
-    font-size: 80px;
+    color: #ec1c2d;
+    font-size: 18px;
     display: none;
+    text-align: left;
+    word-wrap: none;
 }
 
+#cmp-credit{
+  position: absolute;
+  bottom: 0px;
+  left: 15px;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.row{
+  background-color: #FFD12A;
+}
 
 /*custom scroll wheel*/
 
@@ -60,10 +89,10 @@ input[type=text]::-webkit-input-placeholder {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #005d99; 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #005d99; 
 }

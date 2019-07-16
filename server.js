@@ -33,7 +33,8 @@ db.defaults({               //default for db if non exist
   offers: [], //holds offers
   coupons: [], //holds coupons (gift card????)
   transactions: [], //holds all transactions
-  transactionId: 0 //increment transaction id per transaction
+  transactionId: 0, //increment transaction id per transaction
+  pointsToDollars: 1
 }).write()
 
 
@@ -54,7 +55,6 @@ app.get("/", (req, res) =>
 app.get('/editUser', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/editUser.html'))
 })
-
 
 //validate user api Post
 //IG will send post request and get account back - also will display account information
