@@ -43,7 +43,7 @@ function isAppReady(){
         document.getElementById('app-not-ready').style.display = "block"
     }
 
-    if(db.get('players').size().value() === 0){
+    if(!appReady){
         document.getElementById("edit-info").disabled = true
       } else {
         document.getElementById("edit-info").disabled = false
