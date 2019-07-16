@@ -6,11 +6,10 @@ const db = low(adapter)
 module.exports = {
     RedeemOffer: function RedeemOffer(offersAvailable, accountnumber){
 
-        if(offersAvailable === undefined)
-            console.log('I am broke')
+        db.read()
+        let offerData = []
+        offerData = db.get('offers').value()
 
-        var offerData = db.get('offers').value()
-        console.log(offerData)
         let redeemOfferResultList = []
         let transactionIdCount = db.get('transactionId').value()
 
@@ -28,7 +27,6 @@ module.exports = {
                 }
             }
         }
-
         var responseStatus = {"IsSuccess": true, "ErrorMessage": "", "ErrorCode": ""}
 
         for(let i = 0; i < redeemOfferResultList.length; i++){
