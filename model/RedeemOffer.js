@@ -19,33 +19,32 @@ module.exports = {
         //var ResponseStatus = {IsSuccess: false, ErrorMessage: "", ErrorCode: ""}
 
 
-        var j = 0
-
+        var j = 0  // index for the offersAvailable array
         while(j < offersAvailable.length){
-
             for(let i = 0; i < offerData.length; i++){
                 if(offerData[i].AccountNumber === String(accountnumber)){
-
                     if(offerData[i].OfferCode === offersAvailable[j].OfferCode){
                         redeemOfferResultList.push(offersAvailable[j])
-                        console.log("i am not here")
-                        console.log(redeemOfferResultList[j])
+                        console.log("offer found")
+                        console.log("j== "+j)
+                        console.log("i== "+i)
+                        console.log(offersAvailable.length)
+                        //console.log(redeemOfferResultList[j])
 
                         offerData.splice(i,1)
                         //offersAvailable.splice(j,1)
-
-                        //console.log(removed)
                         db.set('offers', offerData).write()
-
-                        redeemOfferResultList[j].ResponseStatus.IsSuccess = true  // offer found and ready to redeem
-                        redeemOfferResultList[j].ResponseStatus.ErrorMessage = ""
-                        redeemOfferResultList[j].ResponseStatus.ErrorCode = ""
 
                         transactionIdCount++;
                         db.set('transactionId', transactionIdCount).write()
                         redeemOfferResultList[j].TransactionId = transactionIdCount
-                        //redeemOfferResultList[j].ResponseStatus = responseStatus
 
+                        let data = {
+                            "IsSucess": true,
+                            "ErrorMessage": "",
+                            "ErrorCode": ""
+                        }
+                        redeemOfferResultList[j].ResponseStatus = data
                         j++
                         i = 0
                     }
@@ -53,25 +52,26 @@ module.exports = {
                 if(offersAvailable.length === j)
                     break
             }
-
             if(offersAvailable.length === j)
                 break   
 
             redeemOfferResultList.push(offersAvailable[j])
-            console.log("i am here")
-            console.log(redeemOfferResultList[j])
-
-            redeemOfferResultList[j].ResponseStatus.IsSuccess = false  // offer found and ready to redeem
-            redeemOfferResultList[j].ResponseStatus.ErrorMessage = "Offer Not Found"
-            redeemOfferResultList[j].ResponseStatus.ErrorCode = "XXXX"
+            console.log("offer not found")
+            console.log("j== "+j)
+            //console.log(redeemOfferResultList[j])
 
             transactionIdCount++;
             db.set('transactionId', transactionIdCount).write()
             redeemOfferResultList[j].TransactionId = transactionIdCount
-            redeemOfferResultList[j].ResponseStatus = responseStatus
 
+            let data = {
+                "IsSucess": false,
+                "ErrorMessage": "Cannot Find the Offer",
+                "ErrorCode": "XXX"
+            }
+            redeemOfferResultList[j].ResponseStatus = data
             j++
-
+            //i = 0
         }
 
         // if(offersAvailable.length != j){
