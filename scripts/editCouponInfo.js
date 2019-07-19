@@ -1,8 +1,7 @@
 var couponData = db.get('coupons').value()
 
-
 function updateCouponTable(){
-    var couponData = db.get('coupons').value()
+    couponData = db.get('coupons').value()
     console.log(couponData)
     let accountInfo = ""
     accountInfo +=(
@@ -33,10 +32,41 @@ function swapCouponValues(tableElement, i){
 
 }
 
+function filterCouponTable(value){
+    let accountInfo = ""
+    accountInfo +=(
+        "<table id='couponTable' border='1' width='700'>" + 
+        "<tr><th>Coupon Number</th><th>Redeem Amount</th></tr>"
+    )
+
+    for(let i = 0; i < couponData.length; i++){
+        if(couponData[i].CouponNumber.includes(value)){
+            accountInfo+=(
+                "<tr><td> <input type='text' name='couponNumber' class='input input1' value ='" +couponData[i].CouponNumber +"'onchange='swapCouponValues(this,"+i+")'"+"</td>" +
+                "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].RedeemAmount +"'onchange='swapCouponValues(this,"+i+")'"+"</td></tr>"
+            )
+        }
+    }
+
+    accountInfo += "</table>"
+    document.getElementById('editCoupon').innerHTML = accountInfo
+    
+}
+
+function searchCouponTable(input){
+    filterCouponTable(input.value)
+}
+
 function writeCoupons(){
     db.set('coupons', couponData).write()
-    document.getElementById('couponDataSaved').textContent = "Data Saved Successfully!"
-    console.log(couponData)
+    //document.getElementById('couponDataSaved').textContent = "Data Saved Successfully!"
+
+    document.getElementById('couponDataSaved').textContent = "Data Saved Successfully!";
+    setTimeout(function(){
+        document.getElementById('couponDataSaved').textContent = "";
+    },1000);
+    //console.log(couponData)
+   
 }
 
 function editCouponData(){
@@ -44,7 +74,7 @@ function editCouponData(){
     document.getElementById('edit-coupons').style.display = 'block'
     document.getElementById('main-page').style.display = 'none'
     document.getElementById('settings-button').style.visibility = 'hidden'
-    //document.getElementById('dataSaved').textContent = ""
+    document.getElementById('CouponDataSaved').textContent = ""
   }
 
 

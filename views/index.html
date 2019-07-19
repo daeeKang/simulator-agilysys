@@ -116,11 +116,13 @@
 
     <span id='edit-coupons' style='display: none'>
         <h1>Edit Coupon Data</h1>
-        <input type="text" id="myInput"  placeholder="Search by coupon number" title="Type in a coupon number">
-        <div id="editCoupon"> </div>
+        <input type="text" id="myInput"  onkeyup="searchCouponTable(this)" placeholder="Search by coupon number" title="Type in a coupon number">
+        <div id="editCoupon"> 
+            
+        </div>
     
-        <button class="button button2" onclick="writeCoupons()">Save</button>
-        <button class="button button2" id="close-btn" onclick="loadCouponMain()">Close</button>
+        <button class="button button2"  onclick="writeCoupons()">Save</button>
+        <button class="button button2" id="couponClose-btn" onclick="loadCouponMain()">Close</button>
     
         <div id="couponDataSaved"></div>
     </span>
