@@ -48,7 +48,7 @@ fs.watchFile(path.join('./transaction.json'), (curr, prev) => {
 
     document.getElementById('player-data').innerHTML = accountInfo
     
-
+    offers = db.get('offers').value()
     let offerHTML = "<h1>Offers:</h1>"
 
     offerHTML += (
