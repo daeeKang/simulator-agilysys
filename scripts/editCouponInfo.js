@@ -1,6 +1,7 @@
 var couponData = db.get('coupons').value()
 
 function updateCouponTable(){
+    db.read()
     couponData = db.get('coupons').value()
     console.log(couponData)
     let accountInfo = ""

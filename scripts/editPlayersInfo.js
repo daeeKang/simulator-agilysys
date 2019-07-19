@@ -1,6 +1,7 @@
 var playerData = db.get('players').value()
 
 function updateTable() {
+  db.read()
   playerData = db.get('players').value()
   let accountInfo=""
   accountInfo += (
