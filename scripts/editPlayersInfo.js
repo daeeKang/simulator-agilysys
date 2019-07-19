@@ -94,7 +94,7 @@ function writeToFile(){
   document.getElementById('dataSaved').textContent = "Data Saved Successfully!"
   setTimeout(function(){
     document.getElementById('dataSaved').textContent = "";
-},1000);
+  },1000);
 }
 
 function editPlayers(){

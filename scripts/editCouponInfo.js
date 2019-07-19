@@ -59,14 +59,10 @@ function searchCouponTable(input){
 
 function writeCoupons(){
     db.set('coupons', couponData).write()
-    //document.getElementById('couponDataSaved').textContent = "Data Saved Successfully!"
-
     document.getElementById('couponDataSaved').textContent = "Data Saved Successfully!";
     setTimeout(function(){
         document.getElementById('couponDataSaved').textContent = "";
-    },1000);
-    //console.log(couponData)
-   
+    },3000);
 }
 
 function editCouponData(){
@@ -74,7 +70,7 @@ function editCouponData(){
     document.getElementById('edit-coupons').style.display = 'block'
     document.getElementById('main-page').style.display = 'none'
     document.getElementById('settings-button').style.visibility = 'hidden'
-    document.getElementById('CouponDataSaved').textContent = ""
+    document.getElementById('couponDataSaved').textContent = ""
   }
 
 
