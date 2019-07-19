@@ -12,8 +12,8 @@ function updateCouponTable(){
 
     for(let i = 0; i < couponData.length; i++){
         accountInfo+=(
-            "<tr><td> <input type='text' class='input input1' value ='" +couponData[i].CouponNumber +"'onchange='swapValue(this,"+i+")'"+"</td>" +
-            "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].RedeemAmount +"'onchange='swapValue(this,"+i+")'"+"</td></tr>"
+            "<tr><td> <input type='text' name='couponNumber' class='input input1' value ='" +couponData[i].CouponNumber +"'onchange='swapCouponValues(this,"+i+")'"+"</td>" +
+            "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].RedeemAmount +"'onchange='swapCouponValues(this,"+i+")'"+"</td></tr>"
         )
         
     }
@@ -22,8 +22,21 @@ function updateCouponTable(){
     document.getElementById('editCoupon').innerHTML = accountInfo
 }
 
-function swapValue(tableElement, i){
+function swapCouponValues(tableElement, i){
 
+    if(tableElement.name === 'couponNumber'){
+        couponData[i].CouponNumber = tableElement.value
+    }
+    else if(tableElement.name === 'redeemAccount'){
+        couponData[i].RedeemAmount = tableElement.value
+    }
+
+}
+
+function writeCoupons(){
+    db.set('coupons', couponData).write()
+    document.getElementById('couponDataSaved').textContent = "Data Saved Successfully!"
+    console.log(couponData)
 }
 
 function editCouponData(){
