@@ -3,19 +3,18 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 
+
+let redeemOfferResultList = []
+let transactionIdCount = db.get('transactionId').value()
+
 module.exports = {
     RedeemOffer: function RedeemOffer(offersAvailable, accountnumber){
 
         db.read()
         let offerData = []
         offerData = db.get('offers').value()
-
-        let redeemOfferResultList = []
-        let transactionIdCount = db.get('transactionId').value()
-
-        var isSuccess = false
-        var errorCode = "", errorMessage = ""
-
+        
+        redeemOfferResultList = []
         var j = 0  // index for the offersAvailable array
 
         while(j < offersAvailable.length){
@@ -36,6 +35,7 @@ module.exports = {
                             "ErrorCode": ""
                         }
                         redeemOfferResultList[j].ResponseStatus = data
+                        writeTransactions(data, j, accountnumber)
                         j++
                         i = 0
                     }
@@ -58,6 +58,7 @@ module.exports = {
                 "ErrorCode": "XXX"
             }
             redeemOfferResultList[j].ResponseStatus = data
+            writeTransactions(data, j, accountnumber)
             j++
         }
 
@@ -75,4 +76,23 @@ module.exports = {
         return out;
 
     }
+}
+
+function writeTransactions(data, j, accountnumber){
+    let transactionData = {
+        "SequenceID": redeemOfferResultList[j].SequenceID,
+        "ReferenceID": redeemOfferResultList[j].ReferenceID,
+        "OfferCode": redeemOfferResultList[j].OfferCode,
+        "TransactionId": transactionIdCount,
+        "ResponseStatus":data
+    }
+
+    db.get('transactions')
+        .push({
+            type: "RedeemOffer",
+            "AccountNumber": accountnumber,
+            transactionId: transactionIdCount,
+            transactionData
+        })
+        .write()
 }
