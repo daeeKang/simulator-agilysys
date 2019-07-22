@@ -40,6 +40,7 @@ function isAppReady(){
         updateTable()
         ipcRenderer.send("isAppReady", true );//send this serverside
         document.getElementById('app-not-ready').style.display = "none"
+        document.getElementById('terminal-container').style.display = "block"
     } else {
         document.getElementById('app-not-ready').style.display = "block"
     }
@@ -78,6 +79,7 @@ function openPlayers(){
         })
         document.getElementById("player-data-status").innerText = "Player Data ✔️"
         db.write()
+        writeToTerminal("Added player data")
     })
 }
 
@@ -105,6 +107,7 @@ function openOffers(){
         })
         document.getElementById("offer-data-status").innerText = "Offer Data ✔️"
         db.write()
+        writeToTerminal("Added offer data")
     })
 }
 
@@ -134,12 +137,14 @@ function openCoupons(){
         console.log(coupons)
         document.getElementById("coupon-data-status").innerText = "Coupon Data ✔️"
         db.write()
+        writeToTerminal("Added coupon data")
     })
 }
 
 
 //checks to see if files were already uploaded and stored locally
 function checkUploaded() {
+    db.read()
     if (db.get('players').size().value() == 0) {
         document.getElementById('player-data-status').textContent = "Player Data ❌"
     } else {
@@ -160,13 +165,18 @@ function checkUploaded() {
         document.getElementById('coupon-data-status').textContent = "Coupons Data ✔️"
         coupons = db.get('coupons').value()
     }
-    isAppReady()
-    //update points to dollars
     checkPointsToDollars()
+    checkRunningPort()
+    isAppReady()
 }
 
 function checkPointsToDollars(){
     let pointsToDollars = db.get('pointsToDollars').value()
     document.getElementById('pointsToDollars').textContent = pointsToDollars + " : 1"
-    db.write()
+}
+
+function checkRunningPort(){
+    let port = db.get('port').value()       
+    ipcRenderer.send("editPort", port)
+    document.getElementById('port-alert').textContent = `Port is currently ${port}`
 }

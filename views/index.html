@@ -17,6 +17,7 @@
     <script src='../scripts/titlebar.js'></script>
     <script src='../scripts/convertPointsToDollars.js'></script>
     <script src='../scripts/editPlayersInfo.js'></script>
+    <script src='../scripts/editPort.js'></script>
 </head>
 <body onload="checkUploaded(); isAppReady()">
     <div id="title-bar">
@@ -38,28 +39,40 @@
                     <p> <button class="button button1" onclick="openCoupons()" id="coupon-data-status"></button> </p>
                 </div>
                 </br>
-                <input id='disable-animation' type='checkbox' onclick="disableAnimation(this)"><p>Disable Menu Animation</p></br>
                 <div id="pointsToDollarsContainer" style="white-space: nowrap">
-                        <h4 style='color: #f5f5f5'>Points To Dollars</h4>
-                        <h2 id='pointsToDollars'>1 : 1</h2>
-                        </br>
-                        <button class="button button1" onclick='convertPointsToDollars()'>edit</button>  
-                    </div>
-                <br>
-                <br>
+                    <h4 style='color: #f5f5f5'>Points To Dollars</h4>
+                    <h2 id='pointsToDollars'>1 : 1</h2>
+                    </br>
+                    <button class="button button1" onclick='convertPointsToDollars()'>edit</button>  
+                </div>
+                </br>
+                </br>
+            </div>
+            <div id ="editPlayerInfo">
+                    <p> <button class ="button button1" onclick="editPlayers()" id="edit-info" value="Edit Info">Edit Players' Info</button></p>
+                </div>
+            </br>
+            <div class='nowrap'>
+                <input id='disable-animation' type='checkbox' onclick="disableAnimation(this)"><p style='white-space: nowrap; display: inline; color: #f5f5f5'> Disable Animations</p></br>
             </div>
 
-            <div id ="editPlayerInfo">
-                <p> <button class ="button button1" onclick="editPlayers()" id="edit-info" value="Edit Info">Edit Players' Info</button></p>
-
-            </div> 
+            <div>
+                <input type='text' id='port' placeholder="port" maxlength="5">
+                <button id='submit-port' onclick="submitPort()">submit</button>
+                <p id='port-alert'></p>
+            </div>
 
             <p id='cmp-credit'>CMP Simulator</p>
         </div>
         <div id="main">        
             <div id="data" style="text-align: center">
-    
-                <h1 id="app-not-ready">App is not ready. Please upload Player Data and Offer Data in settings.</h1>
+                
+                <h1 id="app-not-ready">
+                </br>
+                </br>
+                    App is not ready and will not recieve requests. To start recieving requests, click on the settings 
+                    button in the upper right hand corner and load in Player and Offer data in the format of .csv's.
+                </h1>
                 
                 <div id ="player-data">
                 </div>
@@ -67,7 +80,9 @@
                 <div id="offer-data">
                     </br>
                     </br>
-                    <h1>Awaiting request.</h1>
+                    <div id='terminal-container' style='display:none'>
+                        <div id='terminal'></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,18 +105,23 @@
 
 
     <script>
+        //load terminal on initial load
+        fs.readFile(path.join('./loghtml.txt'), (err, data) => {
+            displayTerminal(data)
+        })
+
+        document.getElementById('port').placeHolder = '8008'
+
         function openNav() {
             var e = document.getElementById("mySidebar"); 
             document.getElementById("main").style.marginLeft = '250px';
             
-
             if(e.style.width == '250px' ){
                 closeNav();
             }
             else{
                 e.style.width = '250px';
             }
-
         }
 
         function closeNav() {
@@ -118,6 +138,7 @@
                 document.getElementById('main').style.transition = '0.5s'
             }
         }
+
     </script>
 
     
