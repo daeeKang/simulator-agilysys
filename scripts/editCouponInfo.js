@@ -13,7 +13,7 @@ function updateCouponTable(){
     for(let i = 0; i < couponData.length; i++){
         accountInfo+=(
             "<tr><td> <input type='text' name='couponNumber' class='input input1' value ='" +couponData[i].CouponNumber +"'onchange='swapCouponValues(this,"+i+")'"+"</td>" +
-            "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].RedeemAmount +"'onchange='swapCouponValues(this,"+i+")'"+"</td></tr>"
+            "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].Balance +"'onchange='swapCouponValues(this,"+i+")'"+"</td></tr>"
         )
         
     }
@@ -28,7 +28,7 @@ function swapCouponValues(tableElement, i){
         couponData[i].CouponNumber = tableElement.value
     }
     else if(tableElement.name === 'redeemAccount'){
-        couponData[i].RedeemAmount = tableElement.value
+        couponData[i].Balance = tableElement.value
     }
 
 }
@@ -44,7 +44,7 @@ function filterCouponTable(value){
         if(couponData[i].CouponNumber.includes(value)){
             accountInfo+=(
                 "<tr><td> <input type='text' name='couponNumber' class='input input1' value ='" +couponData[i].CouponNumber +"'onchange='swapCouponValues(this,"+i+")'"+"</td>" +
-                "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].RedeemAmount +"'onchange='swapCouponValues(this,"+i+")'"+"</td></tr>"
+                "<td> <input type='text' name='redeemAccount' class='input input1' value='"+couponData[i].Balance +"'onchange='swapCouponValues(this,"+i+")'"+"</td></tr>"
             )
         }
     }
