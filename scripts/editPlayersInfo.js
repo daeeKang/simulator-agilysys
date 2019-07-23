@@ -49,6 +49,7 @@ function filterTable(value){
 // does not works, need to edit
 function searchData(input) {
   filterTable(input.value)
+  writeToTerminal("Saved edited player info")
 }
 
 function checkDuplicateAccountNumbers(){

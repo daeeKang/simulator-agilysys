@@ -1,6 +1,7 @@
-CouponNumber,RedeemAmount
-2323232,50
-2323233,100
-2323234,10
-2323235,60
-2323236,500
+CouponNumber,Balance
+1,10
+2,20
+3,30
+4,40
+5,50
+

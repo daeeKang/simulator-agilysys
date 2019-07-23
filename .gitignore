@@ -5,3 +5,6 @@ foundAccount.json
 package-lock.json
 package.json
 *.json
+log.txt
+loghtml.txt
+*.txt
