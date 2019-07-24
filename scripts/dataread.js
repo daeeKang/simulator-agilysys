@@ -22,37 +22,39 @@ function isAppReady(){
 
     if(db.get('players').size().value() != 0) {
         playerExists = true
-
-    } else {
-        console.log('player info missing')
-        console.log(db.get('players').size().value())
-    }
+    } 
+    //debug console
+    // else {
+    //     console.log('player info missing')
+    //     console.log(db.get('players').size().value())
+    // }
 
     if(db.get('offers').size().value() != 0) {
         offersExists = true 
-    } else {
-        console.log('player info missing')
-        console.log(db.get('offers').size().value())
-    }
+    } 
+    //debug console
+    // else {
+    //     console.log('player info missing')
+    //     console.log(db.get('offers').size().value())
+    // }
 
     if(offersExists === true && playerExists === true){
         appReady = true
         updateTable()
         ipcRenderer.send("isAppReady", true );//send this serverside
         document.getElementById('app-not-ready').style.display = "none"
-        document.getElementById('awaiting-request').style.display = "block"
+        document.getElementById('terminal-container').style.display = "block"
     } else {
         document.getElementById('app-not-ready').style.display = "block"
     }
 
     if(!appReady){
         document.getElementById("edit-info").disabled = true
+        writeToTerminal("App is not ready")
       } else {
         document.getElementById("edit-info").disabled = false
       }
 }
-
-//there needs to be more logical shit here but we don't know the conditions so just leave this for now.
 
 //opens window to select file to download mock data
 function openPlayers(){
@@ -79,6 +81,7 @@ function openPlayers(){
         })
         document.getElementById("player-data-status").innerText = "Player Data ✔️"
         db.write()
+        writeToTerminal("Added player data")
     })
 }
 
@@ -106,6 +109,7 @@ function openOffers(){
         })
         document.getElementById("offer-data-status").innerText = "Offer Data ✔️"
         db.write()
+        writeToTerminal("Added offer data")
     })
 }
 
@@ -135,12 +139,14 @@ function openCoupons(){
         console.log(coupons)
         document.getElementById("coupon-data-status").innerText = "Coupon Data ✔️"
         db.write()
+        writeToTerminal("Added coupon data")
     })
 }
 
 
 //checks to see if files were already uploaded and stored locally
 function checkUploaded() {
+    db.read()
     if (db.get('players').size().value() == 0) {
         document.getElementById('player-data-status').textContent = "Player Data ❌"
     } else {
@@ -161,13 +167,18 @@ function checkUploaded() {
         document.getElementById('coupon-data-status').textContent = "Coupons Data ✔️"
         coupons = db.get('coupons').value()
     }
-    isAppReady()
-    //update points to dollars
     checkPointsToDollars()
+    checkRunningPort()
+    isAppReady()
 }
 
 function checkPointsToDollars(){
     let pointsToDollars = db.get('pointsToDollars').value()
     document.getElementById('pointsToDollars').textContent = pointsToDollars + " : 1"
-    db.write()
+}
+
+function checkRunningPort(){
+    let port = db.get('port').value()
+    document.getElementById('port-alert').textContent = `Port is currently ${port}`
+    ipcRenderer.send("editPort", port)
 }
