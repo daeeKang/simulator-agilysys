@@ -20,6 +20,8 @@
     <script src='../scripts/editOfferData.js'></script>
     <script src='../scripts/editCouponInfo.js'></script>
     <script src='../scripts/editPort.js'></script>
+
+    
 </head>
 <body onload="checkUploaded(); isAppReady()">
     <div id="title-bar">
@@ -125,10 +127,10 @@
         <div id="couponDataSaved"></div>
     </span>
 
-    <!-- Adding window for Edit Offer Data -->
+    <!-- Adding window for Player data display Edit Offer Data -->
     <span id="edit-offers" style="display: none">
         <h1>Edit Offers Data</h1>
-        <input type="text" id="myInput" onkeyup="searchOfferTable(this)" placeholder="Seach by Player Name or Account Number" title="Type in Player's Name">
+        <input type="text" id="myInput" onkeyup="searchOfferTable(this)" placeholder="Search by Player Name or Account Number" title="Type in Player's Name">
         <div id="editOffer">
 
         </div>
@@ -138,7 +140,6 @@
 
 
     </span>
-
 
 
     <script>
