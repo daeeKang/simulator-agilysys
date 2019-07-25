@@ -53,10 +53,16 @@
             <div id ="editPlayerInfo">
                     <p> <button class ="button button1" onclick="editPlayers()" id="edit-info" value="Edit Info">Edit Players' Info</button></p>
             </div>
+
             <div id="editCouponData">
                 <p> <button class ="button button1" onclick="editCouponData()" id="edit-couponsInfo" value="Edit Coupon Info">Edit Coupons Info</button></p>
             </div>
-        <br>
+
+            <div id="editOfferData">
+                <p> <button class ="button button1" onclick="editOfferData()" id="edit-offerInfo" value="Edit Offers Info">Edit Offers Info</button></p>
+            </div>
+            <br>
+
             <div class='nowrap'>
                 <input type='text' id='port' placeholder="port" maxlength="5">
                 <button id='submit-port' class="button button1" style="width: 80px" onclick="submitPort()">submit</button>
@@ -117,6 +123,20 @@
         <button class="button button2" id="couponClose-btn" onclick="loadCouponMain()">Close</button>
     
         <div id="couponDataSaved"></div>
+    </span>
+
+    <!-- Adding window for Edit Offer Data -->
+    <span id="edit-offers" style="display: none">
+        <h1>Edit Offers Data</h1>
+        <input type="text" id="myInput" onkeyup="searchOfferTable(this)" placeholder="Seach by Player Name" title="Type in Player's Name">
+        <div id="editOffer">
+
+        </div>
+
+        <button class="button button2" onclick="writeOfferData()">Save</button>
+        <button class="button button2" id="offerClose-btn" onclick="loadOfferMain()">Close</button>
+
+
     </span>
 
 

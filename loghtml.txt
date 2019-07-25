@@ -837,4 +837,4 @@
         "ErrorCode": ""
     },
     "CustomFields": {}
-}</div>
+}</div><p>6/4/2019 8:34:48:716 - Started terminal.</p><p>6/4/2019 8:34:50:964 - App is listening on port 8080</p><p>6/4/2019 8:35:21:246 - Saved points to dollar ration : 12 : 1</p><p>6/4/2019 8:35:27:558 - App is listening on port 1</p><p>6/4/2019 8:35:33:449 - App is listening on port 8080</p><p>6/4/2019 8:39:15:795 - Started terminal.</p><p>6/4/2019 8:39:17:727 - App is listening on port 8080</p><p>6/4/2019 8:39:44:471 - Started terminal.</p><p>6/4/2019 8:39:46:332 - App is listening on port 8080</p><p>6/4/2019 9:8:50:8 - Started terminal.</p><p>6/4/2019 9:8:51:966 - App is listening on port 8080</p><p>6/4/2019 9:10:58:272 - Started terminal.</p><p>6/4/2019 9:11:0:145 - App is listening on port 8080</p>
