@@ -63,6 +63,7 @@ module.exports = {
                 .push({
                     type: "RedeemComp",
                     transactionId: transactionIdCount,
+                    isVoided: false,
                     data
                 })
                 .write()
@@ -77,7 +78,7 @@ module.exports = {
 
         let out = {
             "AccountNumber": accountNumber,
-            "CompBalance": foundAccount.compBalance,
+            "CompBalance": parseInt(foundAccount.compBalance),
             "RedeemCompList": outCompList,
             "ResponseStatus": {
                 "IsSuccess": true,
