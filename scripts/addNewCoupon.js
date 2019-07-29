@@ -21,8 +21,8 @@ function saveCouponForm(){
     couponData.push(newCoupon)
     db.set('players', playerData).write()
     updateCouponTable()
-    addNewUser()
-    checkFlag()
+    addNewCoupon()
+    checkCouponFlag()
 
     document.getElementById('save-coupon').textContent = "New Coupon Added Successfully!";
 
