@@ -18,6 +18,7 @@
     <script src='../scripts/titlebar.js'></script>
     <script src='../scripts/convertPointsToDollars.js'></script>
     <script src='../scripts/editPlayersInfo.js'></script>
+    <script src='../scripts/editOfferData.js'></script>
     <script src='../scripts/addNewPlayer.js'></script>
     <script src='../scripts/editCouponInfo.js'></script>
     <script src='../scripts/editPort.js'></script>
@@ -63,10 +64,16 @@
             <div id ="editPlayerInfo">
                     <p> <button class ="button button1" onclick="editPlayers()" id="edit-info" value="Edit Info">Edit Players' Info</button></p>
             </div>
+
             <div id="editCouponData">
                 <p> <button class ="button button1" onclick="editCouponData()" id="edit-couponsInfo" value="Edit Coupon Info">Edit Coupons Info</button></p>
             </div>
-        <br>
+
+            <div id="editOfferData">
+                <p> <button class ="button button1" onclick="editOfferData()" id="edit-offerInfo" value="Edit Offers Info">Edit Offers Info</button></p>
+            </div>
+            <br>
+
             <div class='nowrap'>
                 <input type='text' id='port' placeholder="port" maxlength="5">
                 <button id='submit-port' class="button button1" style="width: 80px" onclick="submitPort()">submit</button>
@@ -106,15 +113,7 @@
         <h1>Edit Player Data</h1>
 
         <input type="text" id="myInput" onkeyup="searchData(this)" placeholder="Search by name" title="Type in a name">
-        <!-- <div id = "upper-buttons">
-            <button class="button button2" onclick="newWindow()"" id="new-player">Add a New Player</button>
-            <button class="button button2" onclick="writeToFile()">Save</button>
-            <button class="button button2" id="close-btn" onclick="loadMain()">Close</button>
-        </div> -->
-
-        <div id="editData" >
-  
-        </div>
+        <div id="editData"></div>
 
         <button class="button button2" onclick="newWindow()" id="new-player">Add a New Player</button>
         <button class="button button2" onclick="writeToFile()">Save</button>
@@ -140,7 +139,21 @@
         <div id="couponDataSaved"></div>
     </span>
 
-    <!-- Form for add new player to the database -->
+    <!-- Adding window for Player data display Edit Offer Data -->
+    <span id="edit-offers" style="display: none">
+        <h1>Edit Offers Data</h1>
+        <input type="text" id="myInput" onkeyup="searchOfferTable(this)" placeholder="Search by Account Number" title="Type in Player's Name">
+        <div id="editOffer">
+            <!--Html is added in via js-->
+        </div>
+
+        <button class="button button2" onclick="saveOffers()">Save</button>
+        <button class="button button2" id="offerClose-btn" onclick="loadOfferMain()">Close</button>
+
+        <div id="offerDataSaved"></div>
+
+    </span>
+
     <span id='add-player' style='display: none'>
         <h1>Add New Player</h1>
 
