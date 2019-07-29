@@ -44,7 +44,7 @@ function saveNewOffer(inputElement){
     
 }
 
-function enterNewOffer(){
+function enterNewOffer(inputElement){
     switch(inputElement.name){
         case 'offerAccountNumber':{
             newOffer.AccountNumber = inputElement.value
