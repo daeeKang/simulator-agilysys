@@ -16,16 +16,34 @@ function addNewCoupon(){
 
 }
 
+function saveCouponForm(){
 
-function enterInfo(){
+}
+
+
+function enterCouponInfo(inputElement){
+    
+    if(inputElement.name === couponNumber){
+        newCoupon.CouponNumber = inputElement.value
+        couponFlags.CouponNumber = true
+        checkCouponFlag()
+    }
+    else if(inputElement.name === Balance){
+        newCoupon.Balance = inputElement.value
+        couponFlags.Balance = true
+        checkCouponFlag() 
+    }
+}
+
+function checkCouponFlag(){
     
 }
 
 function newCouponWindow(){
     document.getElementById('add-coupon').style.display = 'block'
     document.getElementById('edit-coupons').style.display = 'none'
-    //addNewUser()
-    //document.getElementById("save-plyr-button").disabled = true
+    addNewCoupon()
+    document.getElementById("save-coupon-button").disabled = true
 }
 
 function loadCouponTable(){

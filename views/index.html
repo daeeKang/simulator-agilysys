@@ -221,19 +221,19 @@
         <div id="add-coupon" class="container">
             <form id="offer-form">
                 <div class = "row">
-                    <label for='fname'>Coupon Number</label>
-                    <input type='input1' id='couponNumber' name='couponNumber' placeholder='Coupon Number..' value="" onchange="enterInfo(this)">
+                    <label for='couponName'>Coupon Number</label>
+                    <input type='input1' id='couponNumber' name='couponNumber' placeholder='Coupon Number..' value="" onchange="enterCouponInfo(this)">
                 </div>
                 
                 <div class = "row">
-                    <label for='lname'>Balance</label>
-                    <input type='input1' id='balance' name='balance' placeholder='Balance..' onchange="enterInfo(this)">
+                    <label for='balance'>Balance</label>
+                    <input type='input1' id='balance' name='balance' placeholder='Balance..' onchange="enterCouponInfo(this)">
                 </div>
 
                
                 </div>
                 <button class="button button2" type="reset" id="save-coupon-button" >Save</button>
-                <button class="button button2" type="reset" id="close-offer-button" onclick="loadCouponTable()" >Close</button>
+                <button class="button button2" type="reset" id="close-coupon-button" onclick="loadCouponTable()" >Close</button>
             </form>
         </div>
 
