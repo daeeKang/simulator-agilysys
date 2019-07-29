@@ -15,6 +15,10 @@ var coupons = []
 
 var appReady = false
 
+//******************************************************************************** */
+var isProduction = false // set this to true when exporting to exe
+/********************************************************************************* */
+
 //checks to see if data is loaded, if not, show message
 function isAppReady(){
     let playerExists = false
@@ -143,7 +147,6 @@ function openCoupons(){
     })
 }
 
-
 //checks to see if files were already uploaded and stored locally
 function checkUploaded() {
     db.read()
@@ -168,6 +171,7 @@ function checkUploaded() {
         coupons = db.get('coupons').value()
     }
     checkPointsToDollars()
+    checkRetailRating()
     checkRunningPort()
     isAppReady()
 }
@@ -175,6 +179,11 @@ function checkUploaded() {
 function checkPointsToDollars(){
     let pointsToDollars = db.get('pointsToDollars').value()
     document.getElementById('pointsToDollars').textContent = pointsToDollars + " : 1"
+}
+
+function checkRetailRating(){
+    let retailRating = db.get('retailRating').value()
+    document.getElementById('retail-rating').textContent = retailRating + " : 1"
 }
 
 function checkRunningPort(){
