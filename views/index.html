@@ -21,6 +21,7 @@
     <script src='../scripts/addNewPlayer.js'></script>
     <script src='../scripts/editCouponInfo.js'></script>
     <script src='../scripts/editPort.js'></script>
+    <script src='../scripts/addNewCoupon.js'></script>
 </head>
 <body onload="checkUploaded(); isAppReady()">
     <div id="title-bar">
@@ -116,6 +117,7 @@
         <div id="error-message"></div>
     </span>
 
+    <!-- editing coupons data -->
     <span id='edit-coupons' style='display: none'>
         <h1>Edit Coupon Data</h1>
         <input type="text" id="myInput"  onkeyup="searchCouponTable(this)" placeholder="Search by coupon number" title="Type in a coupon number">
@@ -123,13 +125,14 @@
             
         </div>
     
+        <button class="button button2" onclick="newCouponWindow()" id="new-coupon" onclick="newCouponWindow()">Add a New Coupon</button>
         <button class="button button2"  onclick="writeCoupons()">Save</button>
         <button class="button button2" id="couponClose-btn" onclick="loadCouponMain()">Close</button>
     
         <div id="couponDataSaved"></div>
     </span>
 
-
+    <!-- Form for add new player to the database -->
     <span id='add-player' style='display: none'>
         <h1>Add New Player</h1>
 
@@ -209,6 +212,35 @@
         <div id="save-plyr"></div>
         
     </span>
+
+
+    <!-- Form to add a new offer to the database -->
+    <span id="add-coupon"  style='display: none'>
+        <h1>Add New Coupon</h1>
+
+        <div id="add-coupon" class="container">
+            <form id="offer-form">
+                <div class = "row">
+                    <label for='fname'>Coupon Number</label>
+                    <input type='input1' id='couponNumber' name='couponNumber' placeholder='Coupon Number..' value="" onchange="enterInfo(this)">
+                </div>
+                
+                <div class = "row">
+                    <label for='lname'>Balance</label>
+                    <input type='input1' id='balance' name='balance' placeholder='Balance..' onchange="enterInfo(this)">
+                </div>
+
+               
+                </div>
+                <button class="button button2" type="reset" id="save-coupon-button" >Save</button>
+                <button class="button button2" type="reset" id="close-offer-button" onclick="loadCouponTable()" >Close</button>
+            </form>
+        </div>
+
+        <div id="save-offer"></div>
+    </span>
+
+
 
     <script>
         //load terminal on initial load
