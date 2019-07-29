@@ -23,6 +23,7 @@
     <script src='../scripts/editCouponInfo.js'></script>
     <script src='../scripts/editPort.js'></script>
     <script src='../scripts/retailRating.js'></script>
+    <script src='../scripts/addNewOffer.js'></script>
 </head>
 <body onload="checkUploaded(); isAppReady()">
     <div id="title-bar">
@@ -144,6 +145,7 @@
             <!--Html is added in via js-->
         </div>
 
+        <button class="button button2" onclick="loadAddOffer()">Add New Offer</button>
         <button class="button button2" onclick="saveOffers()">Save</button>
         <button class="button button2" id="offerClose-btn" onclick="loadOfferMain()">Close</button>
 
@@ -229,6 +231,43 @@
 
         <div id="save-plyr"></div>
         
+    </span>
+
+    <span id="add-offer" style='display: none'>
+        <h1>Add New Offer</h1>
+
+        <!-- <div id="add-offer" class="container">
+            <form id="plyr-form">
+                <div class = "row">
+                    <label for='fname'>First Name</label>
+                    <input type='input1' id='fname' name='firstname' placeholder='First Name..' value="" onchange="enterData(this)">
+                </div>
+                
+                <div class = "row">
+                    <label for='lname'>Last Name</label>
+                    <input type='input1' id='lname' name='lastname' placeholder='Last Name..' onchange="enterData(this)">
+                </div>
+               
+                <div class = "row">
+                    <label for='account-number'>Account Number</label>
+                    <input type='input1' id='account-number' name='account-number' placeholder='Account Number..' onchange="enterData(this)">
+                </div>
+
+               
+                <div class = "row">
+                    <label for='tier-level'>Tier Level</label> 
+                    <input type='input1' id='tier-level' name='tier-level' placeholder='Tier Level..' onchange="enterData(this)"> <br>
+                </div>
+ -->
+
+        
+                <button class="button button2" type="reset" id="save-offer-button" onclick="saveNewOffer()">Save</button>
+                <button class="button button2" type="reset" id="close-offer-btn" onclick="loadAddOfferMain()">Close</button>
+            <!-- </form>
+        </div> -->
+
+        <div id="save-new-offer"></div>
+
     </span>
 
     <script>
