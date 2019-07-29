@@ -30,6 +30,7 @@
 6/4/2019 16:55:39:171 - App is listening on port 8080
 6/4/2019 16:56:15:681 - Started terminal.
 6/4/2019 16:56:17:507 - App is listening on port 8080
+<<<<<<< Updated upstream
 6/1/2019 8:39:47:944 - Started terminal.
 6/1/2019 8:39:51:442 - App is listening on port 8080
 6/1/2019 8:39:51:440 - App is not ready
@@ -78,3 +79,13 @@
 6/1/2019 9:55:20:545 - App is listening on port 8080
 6/1/2019 10:1:13:234 - Started terminal.
 6/1/2019 10:1:16:144 - App is listening on port 8080
+=======
+6/5/2019 15:41:50:455 - Started terminal.
+6/5/2019 15:41:55:390 - App is listening on port 8080
+6/1/2019 8:29:11:954 - Started terminal.
+6/1/2019 8:29:14:226 - App is listening on port 8080
+6/1/2019 8:30:23:244 - Started terminal.
+6/1/2019 8:30:25:306 - App is listening on port 8080
+6/1/2019 8:30:25:299 - App is not ready
+6/1/2019 8:30:25:440 - App is not ready
+>>>>>>> Stashed changes

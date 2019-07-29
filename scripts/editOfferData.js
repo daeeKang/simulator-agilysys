@@ -2,6 +2,8 @@ var offersData = db.get('offers').value()
 var playerData = db.get('players').value()
 let offersInfo = ""
 
+// let mergedData = []
+
 function updateOfferTable(){
     db.read()
     offersData = db.get('offers').value()
@@ -14,15 +16,33 @@ function updateOfferTable(){
 
     for(let i = 0; i < playerData.length; i++){
         offersInfo +=(
+
+            "<table id='offerTable"+i+"' border='1' style='width: 500px'>" + 
+        //    "<tr><th>Player Name</th><th>Account Number</th> <th>Offers Available</th></tr>"+
+    
+
             "<tr><td>"+playerData[i].firstName +" "+playerData[i].lastName +"</td>" +
             "<td>"+playerData[i].accountNumber+"</td>"+
+<<<<<<< Updated upstream
             "<td><button class='button button2' id='edit-playerOffers' data-toggle='modal' data-target='.bd-example-modal-lg' onclick='viewPlayerOffers("+i+")' >View Offers</button></td></tr>"
             // "<td><label for='offers'>View Offers</label> <input type='checkbox' name='offersToggle' id='offersToggle' data-toggle='toggle'></td> </tr>"+
             // "<tbody class='hide'> <tr> <td>"+offersData[i]+"</td></tr></tbody>"
+=======
+            "<td><button class='button button2' data-toggle='collapse' id='edit-playerOffers' data-target='#collapseExample"+i+"' aria-expanded='false' aria-controls='collapseExample' onclick='viewPlayerOffers("+i+")' >View Offers</button></td></tr>"+
+            //"<td><label for='offers'>View Offers</label> <input type='checkbox' name='offersToggle' id='offersToggle' data-toggle='toggle'></td> </tr>"+
+            //"<tbody class='hide'> <tr> <td>"+offersData[i]+"</td></tr></tbody>"
+            "</table>"+
+
+            "<div class='collapse' id='collapseExample"+i+"' >"+
+                "<div class='card card-body'>"+
+                "<td><input type='text2' border='1' name='offerCode' value='Hey'></input></td>"+
+            "</div> </div>"
+
+>>>>>>> Stashed changes
         )
     }
 
-    offersInfo += "</table>"
+     offersInfo += "</table>"
     document.getElementById('editOffer').innerHTML = offersInfo
 
 }
@@ -103,3 +123,17 @@ function loadOfferMain(){
 // 		$(this).parents().next('.hide').toggle();
 // 	});
 // });
+<<<<<<< Updated upstream
+=======
+
+
+// function mergeData(){
+
+//     for(var j = 0; j < playerData.length; j++){
+//       if(playerData[i].accountNumber === offersData[i].accountNumber){
+//         var merge= playerData[i]
+        
+//       }
+//     }
+//   }
+>>>>>>> Stashed changes
