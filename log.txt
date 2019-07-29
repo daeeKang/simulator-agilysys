@@ -1,0 +1,2 @@
+6/1/2019 14:37:0:82 - Reset Log
+6/1/2019 14:37:0:102 - This black box will contain all requests and responses made through the simulator and other debugging logs. To see the requests and responses made, click on the the text with underlines to expand them.
