@@ -153,38 +153,15 @@
     <!-- Adding window for Player data display Edit Offer Data -->
     <span id="edit-offers" style="display: none">
         <h1>Edit Offers Data</h1>
-        <input type="text" id="myInput" onkeyup="searchOfferTable(this)" placeholder="Search by Player Name or Account Number" title="Type in Player's Name">
+        <input type="text" id="myInput" onkeyup="searchOfferTable(this)" placeholder="Search by Account Number" title="Type in Player's Name">
         <div id="editOffer">
             <!--Html is added in via js-->
         </div>
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content" id="offers-modal">
-                    <!--Html is added in via js-->   
-                </div>
-            </div>
-        </div>
 
-        <!-- <div>
-                <table border="1">
-                        <tr><th>Name</th><th>Account</th></tr>     
-                    
-                        <tr><td colspan="1"> <button  type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Button with data-target </button> </td></tr>
-                      
-                </table>
-                <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                         <p><input type="text" value="Hello"  ></input></p>
-                         <p>Hello</p>
-                         <p>Hello</p>
-                         </div>
-                   </div>
-        </div> -->
-
-        <button class="button button2" onclick="writeOfferData()">Save</button>
+        <button class="button button2" onclick="saveOffers()">Save</button>
         <button class="button button2" id="offerClose-btn" onclick="loadOfferMain()">Close</button>
 
+        <div id="offerDataSaved"></div>
 
     </span>
 
