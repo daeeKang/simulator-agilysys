@@ -1,17 +1,25 @@
-function convertPointsToDollars(){
     //im sorry about this code
     //god its horrible
+
+    //react where u at
+
+    //not here lol
+
+
+//changes button on sidebar to inputs that can be saved
+function convertPointsToDollars(){
     let outHTML = "<h4 style='color: #f5f5f5'>Points To Dollars</h4>" + 
     "<input type='text' size='6' placeholder='points' id='points' onkeyup='validatePointsToDollars()'>"+
     "<h2> : </h2>" +
     "<input type='text' size='6' placeholder='dollars' id='dollars' onkeyup='validatePointsToDollars()'></br>" +
-    "<button id='submit-ptd' class='button button1 red-but onclick='submitPointsToDollars()'>save</button>"
+    "<button id='submit-ptd' class='button button1 red-but' onclick='submitPointsToDollars()'>save</button>"
     document.getElementById('pointsToDollarsContainer').innerHTML = outHTML
 
     document.getElementById('points').value = db.get('pointsToDollars').value()
     document.getElementById('dollars').value = 1
 }
 
+//submit points to dollars, also reset html back to orig
 function submitPointsToDollars(){
     let points = document.getElementById('points').value
     let dollars = document.getElementById('dollars').value
@@ -25,6 +33,7 @@ function submitPointsToDollars(){
     writeToTerminal(`Saved points-to-dollar ratio : ${points}:$${dollars}`)    
 }
 
+//just checks to see if the input value are numbers
 function validatePointsToDollars(){
     console.log('here')
     let points = document.getElementById('points').value

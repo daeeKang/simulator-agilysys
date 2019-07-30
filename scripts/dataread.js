@@ -1,3 +1,8 @@
+//******************************************************************************** */
+var isProduction = false // set this to true when exporting to exe
+//this simply just changes the path to use based on production or dev
+/********************************************************************************* */
+
 const { ipcRenderer, remote } = require('electron')
 const fs = require('fs')
 const csv = require('csv-parser')
@@ -13,13 +18,12 @@ var players = []
 var offers = []
 var coupons = []
 
-var appReady = false
+// checks to see if app is ready. duh lol
+var appReady = false 
 
-//******************************************************************************** */
-var isProduction = false // set this to true when exporting to exe
-/********************************************************************************* */
 
-//checks to see if data is loaded, if not, show message
+
+//displays if app is ready or not
 function isAppReady(){
     let playerExists = false
     let offersExists = false
@@ -27,29 +31,19 @@ function isAppReady(){
     if(db.get('players').size().value() != 0) {
         playerExists = true
     } 
-    //debug console
-    // else {
-    //     console.log('player info missing')
-    //     console.log(db.get('players').size().value())
-    // }
-
     if(db.get('offers').size().value() != 0) {
         offersExists = true 
     } 
-    //debug console
-    // else {
-    //     console.log('player info missing')
-    //     console.log(db.get('offers').size().value())
-    // }
 
     if(offersExists === true && playerExists === true){
         appReady = true
-        updateTable()
-        ipcRenderer.send("isAppReady", true );//send this serverside
+        updateTable() //update player table
+        ipcRenderer.send("isAppReady", true );//send this serverside, 'unlocks' api 
         document.getElementById('app-not-ready').style.display = "none"
         document.getElementById('terminal-container').style.display = "block"
     } else {
         document.getElementById('app-not-ready').style.display = "block"
+        document.getElementById('terminal-container').style.display = "none"
     }
 }
 
@@ -57,7 +51,7 @@ function isAppReady(){
 function openPlayers(){
     let dialog = remote.dialog
     dialog.showOpenDialog({
-        title: 'Open Mock Data',
+        title: 'Open Player Data',
         filters: [
             {name: 'csv', extensions: ['csv']}
         ]
@@ -82,11 +76,12 @@ function openPlayers(){
     })
 }
 
+//opens window to select file to download mock data
 function openOffers(){
     csv(['AccountNumber', 'OfferCode', 'OfferName', 'OfferValue', 'OfferStartDate', 'OfferEndDate'])
     let dialog = remote.dialog
     dialog.showOpenDialog({
-        title: 'Open Mock Data',
+        title: 'Open Offer Data',
         filters: [
             {name: 'csv', extensions: ['csv']}
         ]
@@ -110,6 +105,7 @@ function openOffers(){
     })
 }
 
+//opens window to select file to download mock data
 function openCoupons(){
     db.read()
     csv(["CouponNumber", "Balance"])
@@ -133,14 +129,14 @@ function openCoupons(){
             db.set('coupons', coupons).write()
             isAppReady()
         })
-        console.log(coupons)
         document.getElementById("coupon-data-status").innerText = "Coupon Data ✔️"
         db.write()
         writeToTerminal("Added coupon data")
+        updateCouponTable() 
     })
 }
 
-//checks to see if files were already uploaded and stored locally
+//checks status of data and then updates app to 'refresh'
 function checkUploaded() {
     db.read()
     if (db.get('players').size().value() == 0) {
@@ -183,4 +179,16 @@ function checkRunningPort(){
     let port = db.get('port').value()
     document.getElementById('port-alert').textContent = `Port is currently ${port}`
     ipcRenderer.send("editPort", port)
+}
+
+function resetDatabase(){
+    db.set('players', []).write()
+    db.set('offers', []).write()
+    db.set('coupons', []).write()
+    db.set('transactions', []).write()
+    db.set('transactionId', 0).write()
+    db.set('pointsToDollars', 1).write()
+    db.set('retailRating', 1).write()
+
+    checkUploaded() //reset app
 }
