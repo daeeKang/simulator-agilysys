@@ -73,50 +73,92 @@ function enterData(inputElement){
     switch(inputElement.name){
         case 'firstname': {
             newUser.firstName = inputElement.value
-            flags.firstName = true
+        
+            // checks if the value is an empty string
+            if(/\S/.test(newUser.firstName))
+                flags.firstName = true
+            else
+                flags.firstName = false
+
             checkFlag()
             break
         }
         case 'lastname': {
             newUser.lastName = inputElement.value
-            flags.lastName = true
+
+            if(/\S/.test(newUser.lastName))
+                flags.lastName = true
+            else
+                flags.lastName = false
+
             checkFlag()
             break
         }
         case 'account-number': {
             newUser.accountNumber = inputElement.value
-            flags.accountNumber = true
+
+            if(/\S/.test(newUser.accountNumber))
+                flags.accountNumber = true
+            else
+                flags.accountNumber = false
+                
             checkFlag()
             break
         }
         case 'point-balance': {
             newUser.pointBalance = inputElement.value
-            flags.pointBalance = true
+
+            if(/\S/.test(newUser.pointBalance))
+                flags.pointBalance = true
+            else
+                flags.pointBalance = false
+
             checkFlag()
             break
         }
         case 'tier-level': {
             newUser.tierLevel = inputElement.value
-            flags.tierLevel = true
+
+            if(/\S/.test(newUser.tierLevel))
+                flags.tierLevel = true
+            else
+                flags.tierLevel = false
+
             checkFlag()
             break
         }
         case 'dob': {
+
+            if(/\S/.test(inputElement.value))
+                flags.dateOfBirth = true
+            else
+                flags.dateOfBirth = false
+
             var str = inputElement.value.split("-")
             newUser.dateOfBirth = str[1] + "/" + str[2] + "/" + str[0]
-            flags.dateOfBirth = true
+
             checkFlag()
             break
         }
         case 'comp-balance':{
             newUser.compBalance = inputElement.value
-            flags.compBalance = true
+
+            if(/\S/.test(newUser.compBalance))
+                flags.compBalance = true
+            else
+                flags.compBalance = false
+
             checkFlag()
             break
         }
         case 'promo-balance':{
             newUser.promo2Balance = inputElement.value
-            flags.promo2Balance = true
+
+            if(/\S/.test(newUser.promo2Balance))
+                flags.promo2Balance = true
+            else
+                flags.promo2Balance = false
+
             checkFlag()
             break
         }
@@ -147,3 +189,5 @@ function checkFlag(){
         document.getElementById("save-plyr-button").disabled = true
     
 }
+
+

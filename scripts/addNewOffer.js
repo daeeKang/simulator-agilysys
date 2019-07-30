@@ -26,7 +26,9 @@ function addNewOffer(){
         "OfferName": false,
         "OfferValue": false,
         "OfferStartDate": false,
-        "OfferEndDate": false
+        "OfferStartTime": true,
+        "OfferEndDate": false,
+        "OfferEndTime": true
     }
 }
 
@@ -71,6 +73,7 @@ function enterNewOffer(inputElement){
         case 'offerAccountNumber':{
             newOffer.AccountNumber = inputElement.value
 
+            // checks if the value is an empty function
             if(/\S/.test(newOffer.AccountNumber))
                 offerFlags.AccountNumber = true
             else
@@ -113,26 +116,51 @@ function enterNewOffer(inputElement){
             break
         }
         case 'offerStartDate':{
+
+            if(/\S/.test(inputElement.value))
+                offerFlags.OfferStartDate = true
+            else
+                offerFlags.OfferStartDate = false
+
+            // change the date format
             var str = inputElement.value.split("-")
             newOffer.OfferStartDate = str[1] + "/" + str[2] + "/" + str[0]
-            offerFlags.OfferStartDate = true
+
             checkOfferFlags()
             break
         }
         case 'offerStartTime':{
+
+            if(/\S/.test(inputElement.value))
+                offerFlags.OfferStartTime = true
+            else
+                offerFlags.OfferStartTime = false
+
             startTime = inputElement.value
-            //offerFlags.OfferStartTime = true
+
             checkOfferFlags()
             break
         }
         case 'offerEndDate':{
+
+            if(/\S/.test(inputElement.value))
+                offerFlags.OfferEndDate = true
+            else
+                offerFlags.OfferEndDate = false
+
             var str = inputElement.value.split("-")
             newOffer.OfferEndDate = str[1] + "/" + str[2] + "/" + str[0]
-            offerFlags.OfferEndDate = true
+    
             checkOfferFlags()
             break
         }
         case 'offerEndTime':{
+
+            if(/\S/.test(inputElement.value))
+                offerFlags.OfferEndTime = true
+            else
+                offerFlags.OfferEndTime = false
+
             endTime = inputElement.value
             checkOfferFlags()
             break
@@ -144,7 +172,8 @@ function enterNewOffer(inputElement){
 // checks if all the field in the form are not changed
 function checkOfferFlags(){
     if(offerFlags.AccountNumber && offerFlags.OfferCode && offerFlags.OfferName && 
-        offerFlags.OfferValue && offerFlags.OfferStartDate  && offerFlags.OfferEndDate)
+        offerFlags.OfferValue && offerFlags.OfferStartDate  && offerFlags.OfferEndDate &&
+            offerFlags.OfferStartTime && offerFlags.OfferEndTime)
             document.getElementById("save-offer-button").disabled = false
     else
         document.getElementById("save-offer-button").disabled = true
