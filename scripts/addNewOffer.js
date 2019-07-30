@@ -52,6 +52,8 @@ function saveNewOffer(inputElement){
     },3000);
 
     document.getElementById("offer-form").reset();
+    document.getElementById("offer-data-status").innerText = "Offer Data ✔️"
+    isAppReady()
 }
 
 function enterNewOffer(inputElement){

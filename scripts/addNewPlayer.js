@@ -49,6 +49,7 @@ function saveForm(){
     updateTable()
     addNewUser()
     checkFlag()
+    
     document.getElementById('save-plyr').textContent = "New Player Added Successfully!";
 
     setTimeout(function(){
@@ -56,7 +57,8 @@ function saveForm(){
     },3000);
 
     document.getElementById("plyr-form").reset();
-    
+    document.getElementById("player-data-status").innerText = "Player Data ✔️"
+    isAppReady()
 }
 
 function enterData(inputElement){
