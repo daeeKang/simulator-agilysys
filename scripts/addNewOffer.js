@@ -1,13 +1,16 @@
 var oldOfferData = db.get('offers').value()
 var newOffer = {}
 var offerFlags = {}
-var startTime = "00:00", endTime = "23:59"
+var startTime, endTime
 
 
 // creates new object for the new offer and check flags
 function addNewOffer(){
     
     oldOfferData = db.get('offers').value()
+    startTime = "00:00" 
+    endTime = "23:59"
+
     newOffer = {
         "AccountNumber": "",
         "OfferCode": "",
@@ -44,6 +47,7 @@ function loadAddOfferMain(){
 
 // saves the new offer added to the offers array
 function saveNewOffer(inputElement){
+    updateOfferTimes()
     oldOfferData.push(newOffer)
     db.set('offers', oldOfferData).write()
     updateOfferTable()
@@ -67,7 +71,7 @@ function enterNewOffer(inputElement){
         case 'offerAccountNumber':{
             newOffer.AccountNumber = inputElement.value
 
-            if(newOffer.AccountNumber != "")
+            if(/\S/.test(newOffer.AccountNumber))
                 offerFlags.AccountNumber = true
             else
                 offerFlags.AccountNumber = false
@@ -78,7 +82,7 @@ function enterNewOffer(inputElement){
         case 'newOfferCode':{
             newOffer.OfferCode = inputElement.value
 
-            if(newOffer.OfferCode != "")
+            if(/\S/.test(newOffer.OfferCode))
                 offerFlags.OfferCode = true
             else
                 offerFlags.OfferCode = false
@@ -89,7 +93,7 @@ function enterNewOffer(inputElement){
         case 'newOfferName':{
             newOffer.OfferName = inputElement.value
 
-            if(newOffer.OfferNam != "")
+            if(/\S/.test(newOffer.OfferName))
                 offerFlags.OfferName = true
             else
                 offerFlags.OfferName = false
@@ -100,7 +104,7 @@ function enterNewOffer(inputElement){
         case 'newOfferValue':{
             newOffer.OfferValue = inputElement.value
 
-            if(newOffer.OfferValue != "")
+            if(/\S/.test(newOffer.OfferValue))
                 offerFlags.OfferValue = true
             else
                 offerFlags.OfferValue = false
