@@ -1,9 +1,11 @@
-var playerData = db.get('players').value()
+var oldPlayerData = db.get('players').value()
 var newUser = {}
 var flags = {}
 
+// creates a new user object and with their check flags
 function addNewUser(){
 
+    oldPlayerData = db.get('players').value()
     newUser = {
         "firstName": "",
         "lastName": "",
@@ -31,6 +33,7 @@ function addNewUser(){
 
 }
 
+// opens new window to add a new player form
 function newWindow(){
     document.getElementById('add-player').style.display = 'block'
     document.getElementById('edit-players').style.display = 'none'
@@ -38,14 +41,16 @@ function newWindow(){
     document.getElementById("save-plyr-button").disabled = true
 }
 
+// load the window back with the edit player table
 function loadTable(){
     document.getElementById('add-player').style.display = 'none'
     document.getElementById('edit-players').style.display = 'block'
 }
 
+// saves the new player to the database, disables the save button and reset the new player form
 function saveForm(){
-    playerData.push(newUser)
-    db.set('players', playerData).write()
+    oldPlayerData.push(newUser)
+    db.set('players', oldPlayerData).write()
     updateTable()
     addNewUser()
     checkFlag()
@@ -61,6 +66,8 @@ function saveForm(){
     isAppReady()
 }
 
+
+// updates the values while they change in the new player form 
 function enterData(inputElement){
 
     switch(inputElement.name){
@@ -131,6 +138,7 @@ function enterData(inputElement){
     }
 }
 
+// check if all the form fields have been changed from the default
 function checkFlag(){
     if(flags.pointBalance && flags.firstName && flags.lastName && flags.accountNumber && flags.compBalance && 
         flags.tierLevel && flags.promo2Balance && flags.dateOfBirth)

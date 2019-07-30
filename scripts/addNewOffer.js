@@ -1,10 +1,13 @@
-var offerData = db.get('offers').value()
+var oldOfferData = db.get('offers').value()
 var newOffer = {}
 var offerFlags = {}
 var startTime = "00:00", endTime = "23:59"
 
-function addNewOffer(){
 
+// creates new object for the new offer and check flags
+function addNewOffer(){
+    
+    oldOfferData = db.get('offers').value()
     newOffer = {
         "AccountNumber": "",
         "OfferCode": "",
@@ -24,7 +27,7 @@ function addNewOffer(){
     }
 }
 
-
+// loading add offer window
 function loadAddOffer(){
     document.getElementById('add-offer').style.display = 'block'
     document.getElementById('edit-offers').style.display = 'none'
@@ -32,15 +35,17 @@ function loadAddOffer(){
     document.getElementById("save-offer-button").disabled = true
 }
 
+// loading back "edit offer window"
 function loadAddOfferMain(){
     document.getElementById('add-offer').style.display = 'none'
     document.getElementById('edit-offers').style.display = 'block'
 
 }
 
+// saves the new offer added to the offers array
 function saveNewOffer(inputElement){
-    offerData.push(newOffer)
-    db.set('offers', offerData).write()
+    oldOfferData.push(newOffer)
+    db.set('offers', oldOfferData).write()
     updateOfferTable()
     addNewOffer()
     checkOfferFlags()
@@ -55,6 +60,7 @@ function saveNewOffer(inputElement){
     isAppReady()
 }
 
+// updates the values added in the form based on their names. In a switch statement
 function enterNewOffer(inputElement){
 
     switch(inputElement.name){
@@ -104,7 +110,6 @@ function enterNewOffer(inputElement){
         }
         case 'offerEndTime':{
             endTime = inputElement.value
-            //offerFlags.OfferEndTime = true
             checkOfferFlags()
             break
         }
@@ -112,6 +117,7 @@ function enterNewOffer(inputElement){
     }
 }
 
+// checks if all the field in the form are not changed
 function checkOfferFlags(){
     if(offerFlags.AccountNumber && offerFlags.OfferCode && offerFlags.OfferName && 
         offerFlags.OfferValue && offerFlags.OfferStartDate  && offerFlags.OfferEndDate)
@@ -120,6 +126,7 @@ function checkOfferFlags(){
         document.getElementById("save-offer-button").disabled = true
 }
 
+// combines the offer dates with the offer times
 function updateOfferTimes(){
     newOffer.OfferStartDate +=  " " + startTime + ":00"
     newOffer.OfferEndDate += " " + endTime + ":00"
