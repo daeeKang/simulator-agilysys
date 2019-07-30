@@ -39,7 +39,6 @@ function loadAddOfferMain(){
 }
 
 function saveNewOffer(inputElement){
-    updateOfferTimes()
     offerData.push(newOffer)
     db.set('offers', offerData).write()
     updateOfferTable()
