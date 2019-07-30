@@ -66,25 +66,45 @@ function enterNewOffer(inputElement){
     switch(inputElement.name){
         case 'offerAccountNumber':{
             newOffer.AccountNumber = inputElement.value
-            offerFlags.AccountNumber = true
+
+            if(newOffer.AccountNumber != "")
+                offerFlags.AccountNumber = true
+            else
+                offerFlags.AccountNumber = false
+
             checkOfferFlags()
             break
         }
         case 'newOfferCode':{
             newOffer.OfferCode = inputElement.value
-            offerFlags.OfferCode = true
+
+            if(newOffer.OfferCode != "")
+                offerFlags.OfferCode = true
+            else
+                offerFlags.OfferCode = false
+
             checkOfferFlags()
             break
         }
         case 'newOfferName':{
             newOffer.OfferName = inputElement.value
-            offerFlags.OfferName = true
+
+            if(newOffer.OfferNam != "")
+                offerFlags.OfferName = true
+            else
+                offerFlags.OfferName = false
+
             checkOfferFlags()
             break
         }
         case 'newOfferValue':{
             newOffer.OfferValue = inputElement.value
-            offerFlags.OfferValue = true
+
+            if(newOffer.OfferValue != "")
+                offerFlags.OfferValue = true
+            else
+                offerFlags.OfferValue = false
+                
             checkOfferFlags()
             break
         }
